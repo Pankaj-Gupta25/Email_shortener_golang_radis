@@ -9,7 +9,8 @@ import (
 	"github.com/Pankaj-Gupta25/Email_shortener_golang_radis/database"
 	"github.com/go-redis/redis/v8"
 	"github.com/gofiber/fiber/v2"
-	"github.com/google/uuid"
+	"github.com/google/uuid" 
+	"github.com/asaskevich/govalidator"
 )
 
 type request struct {
@@ -53,7 +54,7 @@ func ShortenURL(c *fiber.Ctx) error {
 	}
 
 	// check if the input is a actual URL
-	if !govalidater.IsURL(body.URL) {
+	if !govalidator.IsURL(body.URL) {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "in-valid URL"})
 	}
 
