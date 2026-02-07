@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkSnip - URL Shortener</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LINKSNIP</h1>
+            <p class="tagline">Shorten • Share • Track</p>
+        </header>
+
+        <div class="main-card">
+            <form id="shortenForm">
+                <div class="form-group">
+                    <label for="url">Long URL</label>
+                    <input 
+                        type="text" 
+                        id="url" 
+                        name="url" 
+                        placeholder="https://example.com/very/long/url/that/needs/shortening"
+                        required
+                    >
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="customShort">Custom Short (Optional)</label>
+                        <input 
+                            type="text" 
+                            id="customShort" 
+                            name="customShort" 
+                            placeholder="my-custom-link"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expiry">Expiry (Hours)</label>
+                        <input 
+                            type="number" 
+                            id="expiry" 
+                            name="expiry" 
+                            placeholder="24"
+                            min="1"
+                            value="24"
+                        >
+                    </div>
+                </div>
+
+                <button type="submit">
+                    <span>Shorten URL</span>
+                    <div class="spinner"></div>
+                </button>
+            </form>
+
+            <div id="resultCard" class="result-card">
+                <div class="short-url-container">
+                    <div class="short-url" id="shortUrl"></div>
+                    <button class="copy-btn" id="copyBtn">Copy</button>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-label">Rate Remaining</div>
+                        <div class="stat-value" id="rateRemaining">-</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Reset In</div>
+                        <div class="stat-value" id="rateReset">-</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Expires In</div>
+                        <div class="stat-value" id="expiryTime">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="errorCard" class="error-card">
+                <div class="error-message" id="errorMessage"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p class="footer-text">Powered by Go + Redis + Fiber</p>
+            <div class="tech-stack">
+                <span class="tech-badge">Golang</span>
+                <span class="tech-badge">Redis</span>
+                <span class="tech-badge">Fiber</span>
+                <span class="tech-badge">Rate Limited</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
